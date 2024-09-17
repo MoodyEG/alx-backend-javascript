@@ -1,8 +1,8 @@
-import utils from '../utils';
+import { readDatabase } from '../utils';
 
 export default class StudentsController {
   static getAllStudents(req, res) {
-    utils.readDatabase(process.argv[2])
+    readDatabase(process.argv[2])
       .then((data) => {
         const printData = ['This is the list of our students'];
         data.forEach((fieldData, index) => {
@@ -19,7 +19,7 @@ export default class StudentsController {
     if (!['SWE', 'CS'].includes(req.params.major)) {
       res.status(500).send('Major parameter must be CS or SWE');
     } else {
-      utils.readDatabase(process.argv[2])
+      readDatabase(process.argv[2])
         .then((data) => {
           if (data.length > 0) {
             const majorIndex = req.params.major === 'CS' ? 0 : 1;

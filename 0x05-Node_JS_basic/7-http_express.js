@@ -32,12 +32,17 @@ app.get('/', (req, res) => {
 });
 
 app.get('/students', async (req, res) => {
-  try {
-    const output = await countStudents(process.argv[2]);
-    res.send(`This is the list of our students\n${output}`);
-  } catch (error) {
-    res.send(error.message);
-  }
+  let out = 'This is the list of our students\n';
+  await countStudents(process.argv[2])
+    .then((output) => {
+      out += output;
+      res.end(out);
+    })
+    .catch((error) => {
+      out += error.message;
+      res.statusCode = 500;
+      res.end(out);
+    });
 });
 
 app.listen(port, hostname, () => {

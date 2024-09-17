@@ -1,6 +1,9 @@
 const http = require('http');
 const fs = require('fs').promises;
 
+const hostname = 'localhost';
+const port = 1245;
+
 function countStudents(path) {
   return fs.readFile(path, { encoding: 'utf8' })
     .then((data) => {
@@ -25,23 +28,25 @@ function countStudents(path) {
 
 const app = http.createServer((req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/plain' });
-  switch (req.url) {
-    case '/':
-      res.end('Hello Holberton School!');
-      break;
-    case '/students':
-      countStudents(process.argv[2])
-        .then((data) => {
-          res.end(`This is the list of our students\n${data}`);
-        })
-        .catch((error) => {
-          res.end(error.message);
-        });
-      break;
-    default:
+  if (req.url === '/') {
+    res.end('Hello Holberton School!');
+  } else if (req.url === '/students') {
+    countStudents(process.argv[2])
+      .then((data) => {
+        res.end(`This is the list of our students\n${data}`);
+      })
+      .catch((error) => {
+        res.statusCode = 404;
+        res.end(error.message);
+      });
+  } else {
+    res.statusCode = 404;
+    res.end();
   }
 });
 
-app.listen(1245);
+app.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
+});
 
 module.exports = app;

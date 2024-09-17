@@ -10,11 +10,12 @@ export function readDatabase(path) {
           (line, index) => index !== 0 && line !== '',
         ).map((line) => line.split(','));
         const fields = Array.from(new Set(lines.map((line) => line[3])));
-        const studentsPerField = fields.reduce((result, field) => {
-          lines.filter(
+        const studentsPerField = fields.reduce((obj, field) => {
+          // eslint-disable-next-line no-param-reassign
+          obj[field] = lines.filter(
             (line) => line[3] === field,
           ).map((line) => line[0]);
-          return result;
+          return obj;
         }, {});
         resolve(studentsPerField);
       }

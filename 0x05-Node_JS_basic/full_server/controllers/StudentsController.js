@@ -5,13 +5,16 @@ export default class StudentsController {
     readDatabase(process.argv[2])
       .then((data) => {
         const printData = ['This is the list of our students'];
-        data.forEach((fieldData, index) => {
-          printData.push(`Number of students in ${index === 0 ? 'CS' : 'SWE'}: ${fieldData.length}. List: ${fieldData.join(', ')}`);
+        const fields = Object.keys(data).sort(
+          (a, b) => (a.toLowerCase() > b.toLowerCase() ? 1 : -1),
+        );
+        fields.forEach((field) => {
+          printData.push(`Number of students in ${field}: ${data[field].length}. List: ${data[field].join(', ')}`);
         });
-        res.send(printData.join('\n'));
+        res.status(200).send(printData.join('\n'));
       })
-      .catch((err) => {
-        res.send(err.message);
+      .catch(() => {
+        res.status(500).send('Cannot load the database');
       });
   }
 
@@ -21,9 +24,8 @@ export default class StudentsController {
     } else {
       readDatabase(process.argv[2])
         .then((data) => {
-          if (data.length > 0) {
-            const majorIndex = req.params.major === 'CS' ? 0 : 1;
-            res.send(`List: ${data[majorIndex].join(', ')}`);
+          if (Object.keys(data).length > 0) {
+            res.send(`List: ${data[req.params.major].join(', ')}`);
           } else {
             res.status(500).send('Cannot load the database');
           }

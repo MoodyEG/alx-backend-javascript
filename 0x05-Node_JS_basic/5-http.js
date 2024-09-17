@@ -17,7 +17,7 @@ function countStudents(path) {
         ).map((student) => student.name)));
         output += `Number of students in ${field}: ${fieldStudents.length}. List: ${fieldStudents.join(', ')}\n`;
       });
-      return output.replace(/\n$/, ''); // remove the extra newline at the end
+      return output;
     })
     .catch((error) => {
       if (error) {

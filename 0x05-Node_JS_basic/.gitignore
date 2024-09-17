@@ -1,0 +1,7 @@
+babel.config.js
+package-lock.json
+package.json
+.eslintrc.js
+node_modules/
+*main*
+database.csv

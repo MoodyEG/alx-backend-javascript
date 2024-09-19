@@ -17,11 +17,9 @@ describe('payment testing', () => {
 
     sendPaymentRequestToApi(totalAmount, totalShipping);
 
-    expect(stub.calledOnce).to.be.true;
-    expect(stub.calledWith('SUM', totalAmount, totalShipping)).to.be.true;
+    expect(stub.calledOnceWith('SUM', totalAmount, totalShipping)).to.be.true;
 
-    expect(consoleSpy.calledOnce).to.be.true;
-    expect(consoleSpy.calledWith('The total is: 10')).to.be.true;
+    expect(consoleSpy.calledOnceWith('The total is: 10')).to.be.true;
 
     stub.restore();
     consoleSpy.restore();

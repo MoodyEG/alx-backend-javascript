@@ -9,10 +9,10 @@ describe('sendPaymentRequestToApi', () => {
     const logSpy = sinon.spy(console, 'log');
 
     sendPaymentRequestToApi(100, 20);
-    
+
     expect(spy.calledWith('SUM', 100, 20)).to.be.true;
     expect(logSpy.calledWith('The total is: 120')).to.be.true;
-    
+
     spy.restore();
     logSpy.restore();
   });

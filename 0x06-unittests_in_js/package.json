@@ -1,7 +1,7 @@
 {
     "main": "0-calcul.js",
     "scripts": {
-        "test": "mocha"
+        "test": "mocha *.test.js"
     },
     "dependencies": {
         "chai": "^5.1.1",

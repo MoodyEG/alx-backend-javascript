@@ -13,8 +13,8 @@ describe('sendPaymentRequestToApi', () => {
 
     expect(daStub.calledWith('SUM', 100, 20)).to.be.true;
     expect(daStub.callCount).to.be.equal(1);
-    expect(logSpy.log.calledWith('The total is: 10')).to.be.true;
-    expect(logSpy.log.callCount).to.be.equal(1);
+    expect(logSpy.calledWith('The total is: 10')).to.be.true;
+    expect(logSpy.callCount).to.be.equal(1);
 
     daStub.restore();
     logSpy.restore();

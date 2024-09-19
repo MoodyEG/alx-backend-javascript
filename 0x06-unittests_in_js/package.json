@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "test": "mocha *.test.js"
+    "test": "mocha"
   },
   "dependencies": {
     "mocha": "^10.7.3"

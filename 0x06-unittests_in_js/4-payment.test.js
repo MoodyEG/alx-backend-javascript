@@ -5,16 +5,16 @@ const sendPaymentRequestToApi = require('./4-payment');
 
 describe('sendPaymentRequestToApi', () => {
   it('should use Utils.calculateNumber and log the result', () => {
-    const stub = sinon.stub(Utils, 'calculateNumber');
-    stub.returns(10);
+    const daStub = sinon.stub(Utils, 'calculateNumber');
+    daStub.returns(10);
     const logSpy = sinon.spy(console, 'log');
 
     sendPaymentRequestToApi(100, 20);
 
-    expect(stub.calledWith('SUM', 100, 20)).to.be.true;
+    expect(daStub.calledWith('SUM', 100, 20)).to.be.true;
     expect(logSpy.calledWith('The total is: 10')).to.be.true;
 
-    stub.restore();
+    daStub.restore();
     logSpy.restore();
   });
 

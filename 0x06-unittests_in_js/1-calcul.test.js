@@ -1,80 +1,98 @@
+/* eslint-disable jest/expect-expect */
+/* eslint-disable jest/prefer-expect-assertions */
 const assert = require('assert');
 const calculateNumber = require('./1-calcul');
 
 describe('calculateNumber', () => {
-  it('SUM two positive numbers', () => {
+  it('test SUM two positive numbers', () => {
     assert.equal(calculateNumber('SUM', 1, 2), 3);
   });
 
-  it('SUM two negative numbers', () => {
+  it('test SUM two negative numbers', () => {
     assert.equal(calculateNumber('SUM', -1, -2), -3);
   });
 
-  it('SUM one positive and one negative numbers', () => {
+  it('test SUM one positive and one negative numbers', () => {
     assert.equal(calculateNumber('SUM', 1, -2), -1);
   });
 
-  it('SUM two positive float numbers', () => {
+  it('test SUM two positive float numbers', () => {
     assert.equal(calculateNumber('SUM', 1.2, 2), 3);
   });
 
-  it('SUM two negative float numbers', () => {
+  it('test SUM two negative float numbers', () => {
     assert.equal(calculateNumber('SUM', -1, -2.4), -3);
   });
 
-  it('SUM one positive float and one negative float numbers', () => {
+  it('test SUM one positive float and one negative float numbers', () => {
     assert.equal(calculateNumber('SUM', 1, -2.6), -2);
   });
 
-  it('SUBTRACT two positive numbers', () => {
+  it('test SUM two zeros', () => {
+    assert.equal(calculateNumber('SUM', 0, 0), 0);
+  });
+
+  it('test SUBTRACT two positive numbers', () => {
     assert.equal(calculateNumber('SUBTRACT', 1, 2), -1);
   });
 
-  it('SUBTRACT two negative numbers', () => {
+  it('test SUBTRACT two negative numbers', () => {
     assert.equal(calculateNumber('SUBTRACT', -1, -2), 1);
   });
 
-  it('SUBTRACT one positive and one negative numbers', () => {
+  it('test SUBTRACT one positive and one negative numbers', () => {
     assert.equal(calculateNumber('SUBTRACT', 1, -2), 3);
   });
 
-  it('SUBTRACT two positive float numbers', () => {
+  it('test SUBTRACT two positive float numbers', () => {
     assert.equal(calculateNumber('SUBTRACT', 1.2, 2), -1);
   });
 
-  it('SUBTRACT two negative float numbers', () => {
+  it('test SUBTRACT two negative float numbers', () => {
     assert.equal(calculateNumber('SUBTRACT', -1, -2.4), 1);
   });
 
-  it('SUBTRACT one positive float and one negative float numbers', () => {
+  it('test SUBTRACT one positive float and one negative float numbers', () => {
     assert.equal(calculateNumber('SUBTRACT', 1, -2.6), 4);
   });
 
-  it('DIVIDE two positive numbers', () => {
+  it('test SUBTRACT two zeros', () => {
+    assert.equal(calculateNumber('SUBTRACT', 0, 0), 0);
+  });
+
+  it('test DIVIDE two positive numbers', () => {
     assert.equal(calculateNumber('DIVIDE', 6, 3), 2);
   });
 
-  it('DIVIDE two negative numbers', () => {
+  it('test DIVIDE two negative numbers', () => {
     assert.equal(calculateNumber('DIVIDE', -6, -3), 2);
   });
 
-  it('DIVIDE one positive and one negative numbers', () => {
+  it('test DIVIDE one positive and one negative numbers', () => {
     assert.equal(calculateNumber('DIVIDE', 6, -3), -2);
   });
 
-  it('DIVIDE two positive float numbers', () => {
+  it('test DIVIDE two positive float numbers', () => {
     assert.equal(calculateNumber('DIVIDE', 6.2, 2.4), 3);
   });
 
-  it('DIVIDE two negative float numbers', () => {
+  it('test DIVIDE two negative float numbers', () => {
     assert.equal(calculateNumber('DIVIDE', -6.2, -2.6), 2);
   });
 
-  it('DIVIDE one positive float and one negative float numbers', () => {
+  it('test DIVIDE one positive float and one negative float numbers', () => {
     assert.equal(calculateNumber('DIVIDE', 6.2, -2.4), -3);
   });
 
-  it('DIVIDE by zero', () => {
+  it('test DIVIDE two zeros', () => {
+    assert.equal(calculateNumber('DIVIDE', 0, 0), 'Error');
+  });
+
+  it('test DIVIDE by zero', () => {
     assert.equal(calculateNumber('DIVIDE', 6, 0), 'Error');
+  });
+
+  it('test DIVIDE with zero', () => {
+    assert.equal(calculateNumber('DIVIDE', 0, 6), 0);
   });
 });

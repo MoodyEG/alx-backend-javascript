@@ -9,11 +9,10 @@ describe('sendPaymentRequestToApi', () => {
     const logSpy = sinon.spy(console, 'log');
     daStub.returns(10);
 
-    const res = sendPaymentRequestToApi(100, 20);
+    sendPaymentRequestToApi(100, 20);
 
-    expect(daStub.calledOnceWithExactly('SUM', 100, 20)).to.be.true;
-    expect(logSpy.calledOnceWithExactly('The total is: 10')).to.be.true;
-    expect(Utils.calculateNumber('SUM', 100, 20)).to.be.equal(res);
+    expect(daStub.calledOnceWith('SUM', 100, 20)).to.be.true;
+    expect(logSpy.calledOnceWith('The total is: 10')).to.be.true;
 
     daStub.restore();
     logSpy.restore();

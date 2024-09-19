@@ -13,7 +13,7 @@ const Utils = {
       default:
         return 0;
     }
-  }
+  },
 };
 
 module.exports = Utils;

@@ -1,20 +1,26 @@
+/* eslint-disable jest/prefer-expect-assertions */
+/* eslint-disable jest/valid-expect */
+/* eslint-disable no-unused-expressions */
+const { expect } = require('chai');
 const sinon = require('sinon');
-const Utils = require('./utils');
-const expect = require('chai').expect;
-const sendPaymentRequestToApi = require('./4-payment');
 
-describe('sendPaymentRequestToApi', () => {
-  it('using Stub', () => {
-    const daStub = sinon.stub(Utils, 'calculateNumber');
-    const logSpy = sinon.spy(console, 'log');
-    daStub.returns(10);
+const Utils = require('./utils');
+const sendPaymentRequestToApi = require('./3-payment');
+
+describe('payment testing', () => {
+  it('should call Utils.calculateNumber with the correct arguments', () => {
+    const stub = sinon.stub(Utils, 'calculateNumber').returns(10);
+    const consoleSpy = sinon.spy(console, 'log');
 
     sendPaymentRequestToApi(100, 20);
 
-    expect(daStub.calledOnceWith('SUM', 100, 20)).to.be.true;
-    expect(logSpy.calledOnceWith('The total is: 10')).to.be.true;
+    expect(stub.calledOnce).to.be.true;
+    expect(stub.calledWith('SUM', 100, 20)).to.be.true;
 
-    daStub.restore();
-    logSpy.restore();
+    expect(consoleSpy.calledOnce).to.be.true;
+    expect(consoleSpy.calledWith('The total is: 10')).to.be.true;
+
+    stub.restore();
+    consoleSpy.restore();
   });
 });

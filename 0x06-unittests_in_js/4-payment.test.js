@@ -1,4 +1,3 @@
-const { expect } = require('chai');
 const sinon = require('sinon');
 const Utils = require('./utils');
 const sendPaymentRequestToApi = require('./4-payment');
@@ -10,9 +9,9 @@ describe('payment testing', () => {
 
     sendPaymentRequestToApi(100, 20);
 
-    expect(stub.calledOnceWith('SUM', 100, 20)).to.be.true;
+    sinon.assert.calledOnceWithExactly(stub, 'SUM', 100, 20);
 
-    expect(consoleSpy.calledOnceWith('The total is: 10')).to.be.true;
+    sinon.assert.calledOnceWithExactly(consoleSpy, 'The total is: 10');
 
     stub.restore();
     consoleSpy.restore();

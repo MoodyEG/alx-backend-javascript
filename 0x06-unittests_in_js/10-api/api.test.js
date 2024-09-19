@@ -46,3 +46,39 @@ describe('Cart page', () => {
     });
   });
 });
+
+describe('Login page', () => {
+  it('should return 200 status code when posted', (done) => {
+    request.post('http://localhost:7865/login', (err, res) => {
+      expect(res.statusCode).to.equal(200);
+      done();
+    });
+  });
+
+  it('should return Welcome <userName>', (done) => {
+    request.post({
+      url: 'http://localhost:7865/login',
+      body: { userName: 'John Doe' },
+      json: true
+    }, (err, res) => {
+      expect(res.body).to.equal('Welcome John Doe');
+      done();
+    });
+  });
+});
+
+describe('Available payments page', () => {
+  it('should return 200 status code', (done) => {
+    request.get('http://localhost:7865/available_payments', (err, res) => {
+      expect(res.statusCode).to.equal(200);
+      done();
+    });
+  });
+
+  it('should return payment methods info', (done) => {
+    request.get('http://localhost:7865/available_payments', (err, res) => {
+      expect(res.body).to.equal('{"payment_methods":{"credit_cards":true,"paypal":false}}');
+      done();
+    });
+  });
+});

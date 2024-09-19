@@ -4,8 +4,8 @@
         "test": "mocha *.test.js"
     },
     "dependencies": {
-        "chai": "^5.1.1",
+        "chai": "^4.5.0",
         "mocha": "^10.7.3",
-        "sinon": "^19.0.2"
+        "sinon": "^9.2.4"
     }
 }

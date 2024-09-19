@@ -84,12 +84,20 @@ describe('calculateNumber', () => {
     assert.equal(calculateNumber('DIVIDE', 6.2, -2.4), -3);
   });
 
+  it('test DIVIDE result float', () => {
+    assert.equal(calculateNumber('DIVIDE', 7.2, -2.4), -3.5);
+  });
+
   it('test DIVIDE two zeros', () => {
     assert.equal(calculateNumber('DIVIDE', 0, 0), 'Error');
   });
 
   it('test DIVIDE by zero', () => {
     assert.equal(calculateNumber('DIVIDE', 6, 0), 'Error');
+  });
+
+  it('test DIVIDE by rounded zero', () => {
+    assert.equal(calculateNumber('DIVIDE', 6, 0.3), 'Error');
   });
 
   it('test DIVIDE with zero', () => {
